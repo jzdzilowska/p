@@ -10,7 +10,7 @@ export const now = {
   company: 'Techtree',
   location: 'Warsaw, Poland',
   role: 'Full Stack Developer',
-  dates: 'May 2026 — Now',
+  dates: 'May 2026 - Now',
   bullets: [
     'Shipping product end-to-end in a high-velocity startup — user interviews, UI prototyping, architecture, database design, and prod deployment.',
     'Built a 6-signal hiring-intent scoring system over 100K+ companies, operationalized via MCP/Claude with automated Slack distribution.',

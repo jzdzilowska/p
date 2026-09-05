@@ -5,6 +5,7 @@ import Favorites from './Favorites'
 import LoadingScreen from './LoadingScreen'
 import WorldClock from './WorldClock'
 import CustomCursor from './CustomCursor'
+import AmbientAscii from './AmbientAscii'
 import { lenis } from './lib/smoothScroll'
 
 function Entry({
@@ -51,6 +52,7 @@ function App() {
     <>
       <CustomCursor />
       <LoadingScreen />
+      <AmbientAscii />
 
       <div className="page">
         <header className="header" id="top">

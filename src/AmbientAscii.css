@@ -1,0 +1,49 @@
+.ambient-ascii {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-ascii__cluster {
+  position: absolute;
+  top: 50%;
+  width: min(280px, calc((100vw - 720px) / 2 - 48px));
+  height: min(440px, 58vh);
+  overflow: hidden;
+  opacity: 0.72;
+  transform: translateY(-50%);
+  mask-image: radial-gradient(ellipse at center, #000 18%, #000 42%, transparent 78%);
+}
+
+.ambient-ascii__cluster--left {
+  left: 20px;
+}
+
+.ambient-ascii__cluster--right {
+  right: 20px;
+}
+
+.ambient-ascii__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ambient-ascii__cluster--right .ambient-ascii__canvas {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 1040px) {
+  .ambient-ascii {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-ascii {
+    display: none;
+  }
+}
