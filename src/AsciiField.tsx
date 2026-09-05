@@ -22,7 +22,13 @@ function fbm(x: number, y: number, t: number) {
   return value // roughly [-1, 1]
 }
 
-export default function AsciiField({ className }: { className?: string }) {
+export default function AsciiField({
+  className,
+  speed = 0.035,
+}: {
+  className?: string
+  speed?: number
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -65,7 +71,7 @@ export default function AsciiField({ className }: { className?: string }) {
       raf = requestAnimationFrame(draw)
       if (now - lastDraw < FRAME_MS) return
       lastDraw = now
-      time += 0.035
+      time += speed
 
       ctx.clearRect(0, 0, width, height)
       ctx.font = `${cell}px ui-monospace, SFMono-Regular, Consolas, monospace`
@@ -105,7 +111,7 @@ export default function AsciiField({ className }: { className?: string }) {
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', resize)
     }
-  }, [])
+  }, [speed])
 
   return <canvas ref={canvasRef} className={className} aria-hidden="true" />
 }

@@ -12,17 +12,30 @@
   width: min(280px, calc((100vw - 720px) / 2 - 48px));
   height: min(440px, 58vh);
   overflow: hidden;
-  opacity: 0.72;
+  opacity: 0.88;
   transform: translateY(-50%);
-  mask-image: radial-gradient(ellipse at center, #000 18%, #000 42%, transparent 78%);
 }
 
 .ambient-ascii__cluster--left {
-  left: 20px;
+  left: 0;
+  mask-image: radial-gradient(
+    ellipse 100% 72% at left center,
+    #000 0%,
+    #000 28%,
+    rgb(0 0 0 / 72%) 48%,
+    transparent 82%
+  );
 }
 
 .ambient-ascii__cluster--right {
-  right: 20px;
+  right: 0;
+  mask-image: radial-gradient(
+    ellipse 100% 72% at right center,
+    #000 0%,
+    #000 28%,
+    rgb(0 0 0 / 72%) 48%,
+    transparent 82%
+  );
 }
 
 .ambient-ascii__canvas {
