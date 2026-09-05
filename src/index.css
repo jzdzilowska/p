@@ -24,6 +24,12 @@ body {
   margin: 0;
 }
 
+html.about-view-locked,
+body.about-view-locked {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 h1, h2, h3 {
   font-family: var(--sans);
   font-weight: 500;

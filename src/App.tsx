@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { profile, about, now, experience, education, projects } from './data'
 import Favorites from './Favorites'
@@ -6,6 +6,7 @@ import LoadingScreen from './LoadingScreen'
 import WorldClock from './WorldClock'
 import CustomCursor from './CustomCursor'
 import AmbientAscii from './AmbientAscii'
+import { lenis } from './lib/smoothScroll'
 
 type View = 'about' | 'experience' | 'projects'
 
@@ -131,6 +132,23 @@ function ProjectsView() {
 function App() {
   const [favoritesOpen, setFavoritesOpen] = useState(false)
   const [activeView, setActiveView] = useState<View>('about')
+
+  useEffect(() => {
+    const locked = activeView === 'about'
+    document.documentElement.classList.toggle('about-view-locked', locked)
+    document.body.classList.toggle('about-view-locked', locked)
+
+    if (locked) {
+      lenis.stop()
+    } else {
+      lenis.start()
+    }
+
+    return () => {
+      document.documentElement.classList.remove('about-view-locked')
+      document.body.classList.remove('about-view-locked')
+    }
+  }, [activeView])
 
   return (
     <>

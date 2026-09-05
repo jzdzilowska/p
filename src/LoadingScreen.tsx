@@ -18,7 +18,9 @@ export default function LoadingScreen() {
     const removeTimer = setTimeout(() => {
       setMounted(false)
       document.body.style.overflow = ''
-      lenis.start()
+      if (!document.body.classList.contains('about-view-locked')) {
+        lenis.start()
+      }
     }, SHOW_MS + FADE_MS)
 
     return () => {

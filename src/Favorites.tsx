@@ -40,7 +40,9 @@ export default function Favorites({
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = prevOverflow
-      lenis.start()
+      if (!document.body.classList.contains('about-view-locked')) {
+        lenis.start()
+      }
     }
   }, [open, onClose])
 
