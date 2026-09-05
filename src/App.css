@@ -1,3 +1,8 @@
+:root {
+  --small-font-size: 12px;
+  --medium-font-size: 13px;
+}
+
 .page {
   position: relative;
   z-index: 1;
@@ -15,7 +20,7 @@
 /* ---------- header ---------- */
 
 .header {
-  margin-bottom: 72px;
+  margin-bottom: 50px;
 }
 
 .header h1 {
@@ -44,7 +49,7 @@
   flex-wrap: wrap;
   gap: 0;
   font-size: 14px;
-  margin-bottom: 64px;
+  margin-bottom: 50px;
   border-bottom: 1px solid var(--border);
   padding-bottom: 16px;
 }
@@ -107,6 +112,8 @@
 
 .row:first-of-type {
   border-top: none;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 @media (max-width: 560px) {
@@ -135,13 +142,13 @@
 }
 
 .entry .entry-title {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--text-h);
   font-weight: 500;
 }
 
 .entry .entry-sub {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text);
   opacity: 0.75;
   margin-top: 1px;
@@ -159,10 +166,8 @@
 }
 
 .entry ul.bullets li {
-  font-size: 14.5px;
+  font-size: 12px;
   line-height: 1.6;
-  padding-left: 14px;
-  position: relative;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -171,15 +176,8 @@
   margin-top: 6px;
 }
 
-.entry ul.bullets li::before {
-  content: '\2013';
-  position: absolute;
-  left: 0;
-  opacity: 0.6;
-}
-
 .entry .stack {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text);
   opacity: 0.6;
   margin-top: 8px;

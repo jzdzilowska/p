@@ -31,7 +31,7 @@ export const experience = [
     company: 'Amazon',
     role: 'Software Development Engineer Intern',
     location: 'Berlin, Germany',
-    dates: 'June 2025 — August 2025',
+    dates: 'June 2025 - August 2025',
     bullets: [
       'Built an automated JUnit + Hydra integration framework validating AWS CI/CD ML data pipelines serving 80M+ weekly customers, raising test coverage from 0 to 90%.',
       'Provisioned prod-mirroring test infrastructure (S3, DynamoDB, Glue) and enforced least-privilege IAM on prod ETL jobs.',
@@ -43,7 +43,7 @@ export const experience = [
     company: 'Tryp.com',
     role: 'Software Engineering Intern',
     location: 'Copenhagen, Denmark',
-    dates: 'October 2024 — December 2024',
+    dates: 'October 2024 - December 2024',
     bullets: [
       'Owned a Python service integrating transportation REST APIs into a 70M+ edge route graph for itinerary search.',
       'Designed a schema normalization layer unifying inconsistent provider payloads from 1000+ sources.',
@@ -55,7 +55,7 @@ export const experience = [
     company: 'GreenCarLane',
     role: 'Full Stack Development Intern',
     location: 'Copenhagen, Denmark',
-    dates: 'August 2024 — October 2024',
+    dates: 'August 2024 - October 2024',
     bullets: [
       'Refactored 10K+ LOC of legacy frontend into React + TS while keeping interoperability with legacy Vue components.',
       'Built mobile-first layouts and interactive components; improved Core Web Vitals via code splitting.',
@@ -67,7 +67,7 @@ export const experience = [
     company: 'Brown University',
     role: 'Teaching Assistant, Computer Systems & Software Engineering',
     location: 'Providence, RI',
-    dates: 'January 2024 — May 2026',
+    dates: 'January 2024 - May 2026',
     bullets: [
       'Led office hours and debugging sessions for 300+ students in Introduction to Systems (memory, caching, concurrency, OS in C/C++).',
       'Taught 100+ students in Introductory Software Engineering — APIs, cloud databases, state management, component architecture.',
@@ -79,7 +79,7 @@ export const experience = [
     company: 'Freelance',
     role: 'Full Stack Developer',
     location: 'Remote',
-    dates: 'March 2020 — August 2024',
+    dates: 'March 2020 - August 2024',
     bullets: [
       'Delivered modular, responsive production apps using React, Vue, Angular, and Next.js/Nuxt with TypeScript.',
       'Built backends in Node.js and Python exposing REST and GraphQL APIs; designed relational and NoSQL databases.',
