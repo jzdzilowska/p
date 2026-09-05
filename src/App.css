@@ -25,17 +25,13 @@
 
 @media (hover: hover) and (pointer: fine) and (min-width: 900px) {
   .portrait-reveal {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 30;
     display: block;
-    width: 45%;
-    height: 100%;
+    pointer-events: none;
   }
 
   .portrait-reveal img {
     position: fixed;
+    z-index: 30;
     top: clamp(64px, 7vw, 20px);
     right: clamp(32px, 7vw, 60px);
     width: 220px;
@@ -49,9 +45,8 @@
       transform 260ms ease;
   }
 
-  .portrait-reveal:hover img {
+  .header h1:hover ~ .portrait-reveal img {
     opacity: 1;
-    pointer-events: auto;
     transform: translate3d(0, 0, 0) scale(1);
   }
 }
@@ -70,6 +65,7 @@
 }
 
 .header h1 {
+  display: inline-block;
   font-size: 20px;
   letter-spacing: -0.2px;
 }
