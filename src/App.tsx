@@ -1,12 +1,19 @@
 import { useState } from 'react'
 import './App.css'
-import { profile, now, experience, education, projects } from './data'
+import { profile, about, now, experience, education, projects } from './data'
 import Favorites from './Favorites'
 import LoadingScreen from './LoadingScreen'
 import WorldClock from './WorldClock'
 import CustomCursor from './CustomCursor'
 import AmbientAscii from './AmbientAscii'
-import { lenis } from './lib/smoothScroll'
+
+type View = 'about' | 'experience' | 'projects'
+
+const navigation: { id: View; label: string }[] = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+]
 
 function Entry({
   title,
@@ -40,13 +47,90 @@ function Entry({
   )
 }
 
+function AboutView() {
+  return (
+    <section className="about-copy" aria-label="About">
+      {about.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+    </section>
+  )
+}
+
+function ExperienceView() {
+  return (
+    <>
+      <section className="row">
+        <div className="label">Current</div>
+        <div className="content">
+          <Entry
+            title={`${now.role}, ${now.company}`}
+            sub={now.location}
+            dates={now.dates}
+            bullets={now.bullets}
+            stack={now.stack}
+          />
+        </div>
+      </section>
+
+      <section className="row">
+        <div className="label">Previously</div>
+        <div className="content">
+          {experience.map((item) => (
+            <Entry
+              key={item.company}
+              title={`${item.role}, ${item.company}`}
+              sub={item.location}
+              dates={item.dates}
+              bullets={item.bullets}
+              stack={item.stack}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="row">
+        <div className="label">Education</div>
+        <div className="content">
+          <div className="entry">
+            <div className="entry-head">
+              <div>
+                <div className="entry-title">{education.school}</div>
+                <div className="entry-sub">{education.degree}</div>
+              </div>
+              <div className="entry-date">{education.dates}</div>
+            </div>
+            <div className="section-text education-detail">{education.detail}</div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+function ProjectsView() {
+  return (
+    <section className="row">
+      <div className="label">Projects</div>
+      <div className="content">
+        {projects.map((project) => (
+          <Entry
+            key={project.name}
+            title={project.name}
+            sub={project.tagline}
+            dates={project.dates}
+            bullets={project.bullets}
+            stack={project.stack}
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function App() {
   const [favoritesOpen, setFavoritesOpen] = useState(false)
-
-  const scrollToSection = (e: React.MouseEvent, id: string) => {
-    e.preventDefault()
-    lenis.scrollTo(`#${id}`, { duration: 2.2 })
-  }
+  const [activeView, setActiveView] = useState<View>('about')
 
   return (
     <>
@@ -69,89 +153,31 @@ function App() {
           </div>
         </header>
 
-        <nav className="nav">
-          <a href="#now" onClick={(e) => scrollToSection(e, 'now')}>
-            Now
-          </a>
-          <a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>
-            Experience
-          </a>
-          <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>
-            Projects
-          </a>
+        <nav className="nav" aria-label="Portfolio">
+          {navigation.map((item) => (
+            <button
+              type="button"
+              className={`nav-link${activeView === item.id ? ' is-active' : ''}`}
+              aria-current={activeView === item.id ? 'page' : undefined}
+              onClick={() => setActiveView(item.id)}
+              key={item.id}
+            >
+              {item.label}
+            </button>
+          ))}
           <button className="nav-link" onClick={() => setFavoritesOpen(true)}>
             Favorites
           </button>
         </nav>
 
-        <section className="row" id="now">
-          <div className="label">Now</div>
-          <div className="content">
-            <Entry
-              title={`${now.role}, ${now.company}`}
-              sub={now.location}
-              dates={now.dates}
-              bullets={now.bullets}
-              stack={now.stack}
-            />
-          </div>
-        </section>
-
-        <section className="row" id="experience">
-          <div className="label">Previously</div>
-          <div className="content">
-            {experience.map((e) => (
-              <Entry
-                key={e.company}
-                title={`${e.role}, ${e.company}`}
-                sub={e.location}
-                dates={e.dates}
-                bullets={e.bullets}
-                stack={e.stack}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="row" id="education">
-          <div className="label">Education</div>
-          <div className="content">
-            <div className="entry">
-              <div className="entry-head">
-                <div>
-                  <div className="entry-title">{education.school}</div>
-                  <div className="entry-sub">{education.degree}</div>
-                </div>
-                <div className="entry-date">{education.dates}</div>
-              </div>
-              <div className="section-text" style={{ marginTop: 10 }}>
-                {education.detail}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="row" id="projects">
-          <div className="label">Projects</div>
-          <div className="content">
-            {projects.map((p) => (
-              <Entry
-                key={p.name}
-                title={p.name}
-                sub={p.tagline}
-                dates={p.dates}
-                bullets={p.bullets}
-                stack={p.stack}
-              />
-            ))}
-          </div>
-        </section>
+        <main className="view-panel">
+          {activeView === 'about' && <AboutView />}
+          {activeView === 'experience' && <ExperienceView />}
+          {activeView === 'projects' && <ProjectsView />}
+        </main>
 
         <footer className="footer">
-          <a href="#top" onClick={(e) => scrollToSection(e, 'top')}>
-            {profile.name}
-          </a>{' '}
-          · updated {new Date().getFullYear()}
+          updated {new Date().getFullYear()}
         </footer>
       </div>
 

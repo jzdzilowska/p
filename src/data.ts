@@ -6,6 +6,12 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/zdzilowska',
 }
 
+export const about = [
+  'I’m a software and product engineer based in Warsaw, currently building products end to end at Techtree. My work spans user research, interface prototyping, architecture, databases, and production deployment.',
+  'Previously, I worked on ML data pipelines @ Amazon, infra @ Tryp.com, and customer-facing products at GreenCarLane. I also spent several years building full-stack applications for clients across fashion, hospitality, real estate, and design.',
+  'I studied Computer Science at Brown University, where I focused on systems, distributed computing, machine learning, and human-computer interaction. Alongside my studies, I taught computer systems and software engineering and mentored student teams through debugging and product development.',
+]
+
 export const now = {
   company: 'Techtree',
   location: 'Warsaw, Poland',

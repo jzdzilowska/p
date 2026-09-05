@@ -41,20 +41,12 @@
 
 .nav {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 0;
   font-size: 14px;
   margin-bottom: 64px;
   border-bottom: 1px solid var(--border);
   padding-bottom: 16px;
-}
-
-.nav a {
-  text-decoration: none;
-  color: var(--text);
-}
-
-.nav a:hover {
-  color: var(--text-h);
 }
 
 .nav-link {
@@ -69,6 +61,38 @@
 
 .nav-link:hover {
   color: var(--text-h);
+}
+
+.nav-link + .nav-link::before {
+  content: '/';
+  margin: 0 10px;
+}
+
+.nav-link.is-active {
+  color: var(--text-h);
+}
+
+.nav-link:focus-visible {
+  outline: 1px solid var(--text-h);
+  outline-offset: 5px;
+}
+
+/* ---------- replaceable views ---------- */
+
+.view-panel {
+  min-height: 100px;
+}
+
+.about-copy {
+  max-width: 640px;
+  color: var(--text-h);
+  font-size: 12px;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+.about-copy p + p {
+  margin-top: 24px;
 }
 
 /* ---------- row layout (label / content) ---------- */
@@ -165,6 +189,10 @@
 .section-text {
   font-size: 14.5px;
   line-height: 1.7;
+}
+
+.education-detail {
+  margin-top: 10px;
 }
 
 /* ---------- favorites placeholder ---------- */
