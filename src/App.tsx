@@ -4,6 +4,8 @@ import { profile, now, experience, education, projects } from './data'
 import Favorites from './Favorites'
 import LoadingScreen from './LoadingScreen'
 import WorldClock from './WorldClock'
+import CustomCursor from './CustomCursor'
+import { lenis } from './lib/smoothScroll'
 
 function Entry({
   title,
@@ -40,8 +42,14 @@ function Entry({
 function App() {
   const [favoritesOpen, setFavoritesOpen] = useState(false)
 
+  const scrollToSection = (e: React.MouseEvent, id: string) => {
+    e.preventDefault()
+    lenis.scrollTo(`#${id}`, { duration: 2.2 })
+  }
+
   return (
     <>
+      <CustomCursor />
       <LoadingScreen />
 
       <div className="page">
@@ -60,9 +68,15 @@ function App() {
         </header>
 
         <nav className="nav">
-          <a href="#now">Now</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
+          <a href="#now" onClick={(e) => scrollToSection(e, 'now')}>
+            Now
+          </a>
+          <a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>
+            Experience
+          </a>
+          <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>
+            Projects
+          </a>
           <button className="nav-link" onClick={() => setFavoritesOpen(true)}>
             Favorites
           </button>
@@ -132,7 +146,10 @@ function App() {
         </section>
 
         <footer className="footer">
-          <a href="#top">{profile.name}</a> · updated {new Date().getFullYear()}
+          <a href="#top" onClick={(e) => scrollToSection(e, 'top')}>
+            {profile.name}
+          </a>{' '}
+          · updated {new Date().getFullYear()}
         </footer>
       </div>
 

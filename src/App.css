@@ -137,6 +137,8 @@
   line-height: 1.6;
   padding-left: 14px;
   position: relative;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .entry ul.bullets li + li {
