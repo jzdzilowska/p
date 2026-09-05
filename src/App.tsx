@@ -51,8 +51,23 @@ function Entry({
 function AboutView() {
   return (
     <section className="about-copy" aria-label="About">
-      {about.map((paragraph) => (
-        <p key={paragraph}>{paragraph}</p>
+      {about.map((paragraph, paragraphIndex) => (
+        <p key={paragraphIndex}>
+          {paragraph.map((segment, segmentIndex) =>
+            'href' in segment ? (
+              <a
+                href={segment.href}
+                target="_blank"
+                rel="noreferrer"
+                key={segmentIndex}
+              >
+                {segment.text}
+              </a>
+            ) : (
+              segment.text
+            ),
+          )}
+        </p>
       ))}
     </section>
   )
@@ -74,7 +89,7 @@ function ExperienceView() {
         </div>
       </section>
 
-      <section className="row">
+      <section className="row previous-experience">
         <div className="label">Previously</div>
         <div className="content">
           {experience.map((item) => (
@@ -169,6 +184,9 @@ function App() {
               LinkedIn
             </a>
           </div>
+          <div className="portrait-reveal" aria-hidden="true">
+            <img src="/portrait.webp" alt="" width="520" height="780" />
+          </div>
         </header>
 
         <nav className="nav" aria-label="Portfolio">
@@ -195,7 +213,7 @@ function App() {
         </main>
 
         <footer className="footer">
-          updated {new Date().getFullYear()}
+          Current as of {new Date().getFullYear()}
         </footer>
       </div>
 
