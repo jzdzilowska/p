@@ -3,6 +3,8 @@ import { createElement } from 'react'
 type ExperienceEntryProps = {
   company: string
   logo: string
+  logoAlt?: string
+  logoStyle?: 'contain' | 'portrait'
   role: string
   location?: string
   dates: string
@@ -13,6 +15,8 @@ type ExperienceEntryProps = {
 function ExperienceEntry({
   company,
   logo,
+  logoAlt,
+  logoStyle = 'contain',
   role,
   location,
   dates,
@@ -24,10 +28,10 @@ function ExperienceEntry({
     { className: 'experience-item' },
     createElement(
       'div',
-      { className: 'company-logo' },
+      { className: `company-logo company-logo--${logoStyle}` },
       createElement('img', {
         src: logo,
-        alt: `${company} logo`,
+        alt: logoAlt ?? `${company} logo`,
         width: 36,
         height: 36,
       }),

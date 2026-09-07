@@ -142,7 +142,9 @@ export const experience = [
   },
   {
     company: 'Freelance',
-    logo: '/logos/freelance.svg',
+    logo: '/logos/freelance-photo.png',
+    logoAlt: 'Portrait of Julia Zdzilowska',
+    logoStyle: 'portrait' as const,
     role: 'Full Stack Developer',
     location: 'Remote',
     dates: 'March 2020 - August 2024',
