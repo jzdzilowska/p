@@ -74,6 +74,7 @@ export const about = [
 
 export const now = {
   company: 'Techtree',
+  logo: '/logos/techtree.svg',
   location: 'Warsaw, Poland',
   role: 'Full Stack Developer',
   dates: 'May 2026 - Now',
@@ -89,6 +90,7 @@ export const now = {
 export const experience = [
   {
     company: 'Amazon',
+    logo: '/logos/amazon.svg',
     role: 'Software Development Engineer Intern',
     location: 'Berlin, Germany',
     dates: 'June 2025 - August 2025',
@@ -101,6 +103,7 @@ export const experience = [
   },
   {
     company: 'Tryp.com',
+    logo: '/logos/tryp.svg',
     role: 'Software Engineering Intern',
     location: 'Copenhagen, Denmark',
     dates: 'October 2024 - December 2024',
@@ -113,6 +116,7 @@ export const experience = [
   },
   {
     company: 'GreenCarLane',
+    logo: '/logos/greencarlane.svg',
     role: 'Full Stack Development Intern',
     location: 'Copenhagen, Denmark',
     dates: 'August 2024 - October 2024',
@@ -124,8 +128,9 @@ export const experience = [
     stack: 'React, TypeScript, Redux',
   },
   {
-    company: 'Brown University',
-    role: 'Teaching Assistant, Computer Systems & Software Engineering',
+    company: 'BrownU',
+    logo: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Brown_Coat_of_Arms.svg',
+    role: 'Teaching Assistant, CSCI0300 & CSCI320',
     location: 'Providence, RI',
     dates: 'January 2024 - May 2026',
     bullets: [
@@ -137,6 +142,7 @@ export const experience = [
   },
   {
     company: 'Freelance',
+    logo: '/logos/freelance.svg',
     role: 'Full Stack Developer',
     location: 'Remote',
     dates: 'March 2020 - August 2024',
@@ -153,35 +159,8 @@ export const education = {
   school: 'Brown University',
   location: 'Providence, RI, USA',
   degree: 'B.Sc. Computer Science — Schoman Scholarship (Full-Ride)',
-  dates: 'September 2022 — May 2026',
+  dates: 'September 2022 - May 2026',
   detail: 'GPA 4.0/4.0. Coursework: Algorithms, Systems, Distributed Systems, Computer Networks, Embedded Systems, AI, Machine Learning, Computer Vision, HCI.',
-}
-
-// Placeholder images — swap `img` for your real picks whenever you get to it.
-// Captions are the only thing that needs to feel personal; images are seeded
-// placeholders so the moodboard has something to scroll through in the meantime.
-export const favorites = {
-  houses: [
-    { img: 'https://picsum.photos/seed/house1/400/560', caption: 'Add a house you love' },
-    { img: 'https://picsum.photos/seed/house2/400/500', caption: 'Add a house you love' },
-    { img: 'https://picsum.photos/seed/house3/400/600', caption: 'Add a house you love' },
-    { img: 'https://picsum.photos/seed/house4/400/520', caption: 'Add a house you love' },
-    { img: 'https://picsum.photos/seed/house5/400/540', caption: 'Add a house you love' },
-  ],
-  books: [
-    { img: 'https://picsum.photos/seed/book1/400/580', caption: 'Add a favorite book' },
-    { img: 'https://picsum.photos/seed/book2/400/500', caption: 'Add a favorite book' },
-    { img: 'https://picsum.photos/seed/book3/400/560', caption: 'Add a favorite book' },
-    { img: 'https://picsum.photos/seed/book4/400/540', caption: 'Add a favorite book' },
-    { img: 'https://picsum.photos/seed/book5/400/520', caption: 'Add a favorite book' },
-  ],
-  paintings: [
-    { img: 'https://picsum.photos/seed/paint1/400/500', caption: 'Add a painting you love' },
-    { img: 'https://picsum.photos/seed/paint2/400/560', caption: 'Add a painting you love' },
-    { img: 'https://picsum.photos/seed/paint3/400/600', caption: 'Add a painting you love' },
-    { img: 'https://picsum.photos/seed/paint4/400/520', caption: 'Add a painting you love' },
-    { img: 'https://picsum.photos/seed/paint5/400/540', caption: 'Add a painting you love' },
-  ],
 }
 
 export const projects = [

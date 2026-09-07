@@ -10,6 +10,7 @@ import DefinitionTerm from './DefinitionTerm'
 import HoverImage from './HoverImage'
 import LoadingDots from './LoadingDots'
 import ScrollHome from './ScrollHome'
+import ExperienceEntry from './ExperienceEntry'
 import { lenis } from './lib/smoothScroll'
 
 type View = 'about' | 'experience' | 'projects' | 'favorites'
@@ -20,38 +21,6 @@ const navigation: { id: View; label: string }[] = [
   { id: 'projects', label: 'Side Work' },
   { id: 'favorites', label: 'Favorites' },
 ]
-
-function Entry({
-  title,
-  sub,
-  dates,
-  bullets,
-  stack,
-}: {
-  title: string
-  sub?: string
-  dates: string
-  bullets: string[]
-  stack?: string
-}) {
-  return (
-    <div className="entry">
-      <div className="entry-head">
-        <div>
-          <div className="entry-title">{title}</div>
-          {sub && <div className="entry-sub">{sub}</div>}
-        </div>
-        <div className="entry-date">{dates}</div>
-      </div>
-      <ul className="bullets">
-        {bullets.map((b, i) => (
-          <li key={i}>{b}</li>
-        ))}
-      </ul>
-      {stack && <div className="stack">{stack}</div>}
-    </div>
-  )
-}
 
 function AboutView() {
   return (
@@ -96,33 +65,11 @@ function AboutView() {
 function ExperienceView() {
   return (
     <>
-      <section className="row">
-        <div className="label">Current</div>
-        <div className="content">
-          <Entry
-            title={`${now.role}, ${now.company}`}
-            sub={now.location}
-            dates={now.dates}
-            bullets={now.bullets}
-            stack={now.stack}
-          />
-        </div>
-      </section>
-
-      <section className="row previous-experience">
-        <div className="label">Previously</div>
-        <div className="content">
-          {experience.map((item) => (
-            <Entry
-              key={item.company}
-              title={`${item.role}, ${item.company}`}
-              sub={item.location}
-              dates={item.dates}
-              bullets={item.bullets}
-              stack={item.stack}
-            />
-          ))}
-        </div>
+      <section className="experience-list" aria-label="Work experience">
+        <ExperienceEntry {...now} />
+        {experience.map((item) => (
+          <ExperienceEntry {...item} key={item.company} />
+        ))}
       </section>
 
       <section className="row">
