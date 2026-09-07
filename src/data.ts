@@ -8,14 +8,28 @@ export const profile = {
 
 export const about = [
   [
-    { text: 'I’m a software and product engineer based between WAW / BOS / SFO, currently building @ ' },
+    { text: 'I’m a software and product engineer based between WAW / NYC / SF, currently building @ ' },
     {
       text: 'Techtree',
       href: 'https://www.linkedin.com/company/techtreehq/posts/?feedView=all',
     },
     {
-      text: '. My work spans from user research & interface prototyping to system archi, database design, and production deployment. '
+      text: '. I work E2E, from user research and interface prototyping to full-stack development. Im a firm believer in ',
     },
+    {
+      text: 'Aesthetic Egalitarianism',
+      id: 'aesthetic-egalitarianism',
+      definition:
+        'the principle that access to beauty and refinement should be distributed equally, not reserved as a privilege of wealth or status. In software, it means treating visual and interaction quality as a baseline of digital infrastructure, not reserved for high-end or paid products.',
+    },
+    { text: ' and ' },
+    {
+      text: 'Software Romanticism',
+      id: 'software-romanticism',
+      definition:
+        'the view that software forms part of the human environment, and that its aesthetics, atmosphere, tactility, coherence, and character therefore influence human experience and wellbeing. Coined by me.',
+    },
+    { text: '.' },
   ],
   [
     {
@@ -26,21 +40,36 @@ export const about = [
       href: 'https://www.linkedin.com/company/amazon/',
     },
     {
-      text: ', infra @ ',
+      text: ', data platform engineering @ ',
     },
     {
       text: 'Tryp.com',
       href: 'https://www.linkedin.com/company/trypcom/',
     },
     {
-      text: ', and spent several years building in full-stack for clients across fashion, hospitality, real estate, and design.',
+      text: ', and spent several years leading full-stack work for clients in premium fashion, real estate, and hospitality.',
     },
   ],
   [
+    { text: 'I studied ' },
     {
-      text: 'I studied CS at BrownU, where I focused on systems, distributed computing, machine learning, and human-computer interaction. Alongside my studies, I taught computer systems and software engineering and mentored student teams through debugging and product development.',
+      text: 'CS at BrownU',
+      image: '/grad.PNG',
     },
-  ],
+    {
+      text: ' with a focus on data engineering and human-computer interaction, helping teach ',
+    },
+    {
+      text: 'CSCI0300',
+      href: 'https://cs.brown.edu/courses/info/csci0330/',
+    },
+    { text: ' and ' },
+    {
+      text: 'CSCI0320',
+      href: 'https://cs.brown.edu/courses/info/csci0320/',
+    },
+    { text: '. Since then, I’ve postponed my graduate studies @ Oxford to fund Oyra.'}
+  ]
 ]
 
 export const now = {

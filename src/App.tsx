@@ -1,19 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import { profile, about, now, experience, education, projects } from './data'
+import { profile, about, now, experience, education } from './data'
 import Favorites from './Favorites'
 import LoadingScreen from './LoadingScreen'
 import WorldClock from './WorldClock'
 import CustomCursor from './CustomCursor'
 import AmbientAscii from './AmbientAscii'
+import DefinitionTerm from './DefinitionTerm'
+import HoverImage from './HoverImage'
+import LoadingDots from './LoadingDots'
+import ScrollHome from './ScrollHome'
 import { lenis } from './lib/smoothScroll'
 
-type View = 'about' | 'experience' | 'projects'
+type View = 'about' | 'experience' | 'projects' | 'favorites'
 
 const navigation: { id: View; label: string }[] = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
+  { id: 'projects', label: 'Side Work' },
+  { id: 'favorites', label: 'Favorites' },
 ]
 
 function Entry({
@@ -63,6 +68,21 @@ function AboutView() {
               >
                 {segment.text}
               </a>
+            ) : 'image' in segment && segment.image !== undefined ? (
+              <HoverImage
+                label={segment.text}
+                src={segment.image}
+                key={segmentIndex}
+              />
+            ) : 'definition' in segment &&
+              segment.definition !== undefined &&
+              segment.id !== undefined ? (
+              <DefinitionTerm
+                id={segment.id}
+                term={segment.text}
+                definition={segment.definition}
+                key={segmentIndex}
+              />
             ) : (
               segment.text
             ),
@@ -126,27 +146,37 @@ function ExperienceView() {
 
 function ProjectsView() {
   return (
-    <section className="row">
-      <div className="label">Projects</div>
-      <div className="content">
-        {projects.map((project) => (
-          <Entry
-            key={project.name}
-            title={project.name}
-            sub={project.tagline}
-            dates={project.dates}
-            bullets={project.bullets}
-            stack={project.stack}
-          />
-        ))}
-      </div>
+    <section className="about-copy" aria-label="About">
+      <p>
+        Check the{' '}
+        <a href={profile.github} target="_blank" rel="noreferrer">
+          GitHub
+        </a>{' '}
+        for now. To be attached
+        <LoadingDots />
+      </p>
     </section>
   )
 }
 
 function App() {
-  const [favoritesOpen, setFavoritesOpen] = useState(false)
   const [activeView, setActiveView] = useState<View>('about')
+  const [showScrollHome, setShowScrollHome] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setShowScrollHome(
+        !entry.isIntersecting && entry.boundingClientRect.top < 0,
+      )
+    })
+
+    observer.observe(header)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const locked = activeView === 'about'
@@ -170,9 +200,19 @@ function App() {
       <CustomCursor />
       <LoadingScreen />
       <AmbientAscii />
+      <ScrollHome
+        name={profile.name}
+        visible={showScrollHome}
+        onActivate={() => {
+          const reduceMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)',
+          ).matches
+          lenis.scrollTo(0, { immediate: reduceMotion })
+        }}
+      />
 
       <div className="page">
-        <header className="header" id="top">
+        <header className="header" id="top" ref={headerRef}>
           <h1>{profile.name}</h1>
           <div className="title">{profile.title}</div>
           <div className="links">
@@ -201,23 +241,19 @@ function App() {
               {item.label}
             </button>
           ))}
-          <button className="nav-link" onClick={() => setFavoritesOpen(true)}>
-            Favorites
-          </button>
         </nav>
 
         <main className="view-panel">
           {activeView === 'about' && <AboutView />}
           {activeView === 'experience' && <ExperienceView />}
           {activeView === 'projects' && <ProjectsView />}
+          {activeView === 'favorites' && <Favorites />}
         </main>
 
         <footer className="footer">
           Current as of {new Date().getFullYear()}
         </footer>
       </div>
-
-      <Favorites open={favoritesOpen} onClose={() => setFavoritesOpen(false)} />
 
       <div className="available-tag">AVAILABLE WORLDWIDE</div>
       <WorldClock />
