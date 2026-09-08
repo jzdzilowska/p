@@ -507,7 +507,17 @@
   margin-top: 10px;
 }
 
-/* ---------- favorites placeholder ---------- */
+/* ---------- writing ---------- */
+
+.writing-view h2 {
+  margin-bottom: 24px;
+  font-size: 20px;
+}
+
+.writing-back {
+  display: inline-block;
+  margin-top: 32px;
+}
 
 /* ---------- footer ---------- */
 

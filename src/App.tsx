@@ -11,11 +11,13 @@ import HoverImage from './HoverImage'
 import LoadingDots from './LoadingDots'
 import ScrollHome from './ScrollHome'
 import ExperienceEntry from './ExperienceEntry'
+import Writing from './Writing'
 import { lenis } from './lib/smoothScroll'
+import { viewFromHash, type View } from './routes'
 
-type View = 'about' | 'experience' | 'projects' | 'favorites'
+type NavigationView = Exclude<View, 'writing'>
 
-const navigation: { id: View; label: string }[] = [
+const navigation: { id: NavigationView; label: string }[] = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Side Work' },
@@ -107,9 +109,19 @@ function ProjectsView() {
 }
 
 function App() {
-  const [activeView, setActiveView] = useState<View>('about')
+  const [activeView, setActiveView] = useState<View>(() =>
+    viewFromHash(window.location.hash),
+  )
   const [showScrollHome, setShowScrollHome] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const syncViewWithHash = () =>
+      setActiveView(viewFromHash(window.location.hash))
+
+    window.addEventListener('hashchange', syncViewWithHash)
+    return () => window.removeEventListener('hashchange', syncViewWithHash)
+  }, [])
 
   useEffect(() => {
     const header = headerRef.current
@@ -185,7 +197,18 @@ function App() {
               type="button"
               className={`nav-link${activeView === item.id ? ' is-active' : ''}`}
               aria-current={activeView === item.id ? 'page' : undefined}
-              onClick={() => setActiveView(item.id)}
+              onClick={() => {
+                if (item.id === 'about') {
+                  window.history.pushState(
+                    null,
+                    '',
+                    `${window.location.pathname}${window.location.search}`,
+                  )
+                  setActiveView('about')
+                } else {
+                  window.location.hash = `/${item.id}`
+                }
+              }}
               key={item.id}
             >
               {item.label}
@@ -198,6 +221,7 @@ function App() {
           {activeView === 'experience' && <ExperienceView />}
           {activeView === 'projects' && <ProjectsView />}
           {activeView === 'favorites' && <Favorites />}
+          {activeView === 'writing' && <Writing />}
         </main>
 
         <footer className="footer">
