@@ -19,7 +19,7 @@ const navigation: { id: View; label: string }[] = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Side Work' },
-  { id: 'favorites', label: 'Favorites' },
+  { id: 'favorites', label: 'Getting Personal' },
 ]
 
 function AboutView() {
@@ -166,6 +166,9 @@ function App() {
             <a href={`mailto:${profile.email}`}>Email</a>
             <a href={profile.github} target="_blank" rel="noreferrer">
               GitHub
+            </a>
+            <a href={profile.x} target="_blank" rel="noreferrer">
+              X
             </a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer">
               LinkedIn

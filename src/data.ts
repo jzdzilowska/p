@@ -2,6 +2,7 @@ export const profile = {
   name: 'Julia Zdzilowska',
   title: 'Software & Product Engineer',
   email: 'zdzilowska@gmail.com',
+  x: 'https://x.com/jzdzilowska',
   github: 'https://github.com/jzdzilowska',
   linkedin: 'https://linkedin.com/in/zdzilowska',
 }
@@ -27,7 +28,7 @@ export const about = [
       text: 'Software Romanticism',
       id: 'software-romanticism',
       definition:
-        'the view that software forms part of the human environment, and that its aesthetics, atmosphere, tactility, coherence, and character therefore influence human experience and wellbeing. Coined by me.',
+        'the view that software forms part of the human environment, and that its aesthetics, coherence, and character therefore influence human experience and wellbeing. Coined by me.',
     },
     { text: '.' },
   ],
