@@ -15,3 +15,7 @@ Anyway. Besides SWE, product design, and architecture, I'm also interested in ca
 ![Neue Nationalgalerie in Berlin](/favorites/neue-nationalgalerie.webp)
 
 ![Living room of the Eames House](/favorites/eames-house-interior.webp)
+
+![Maison de Verre by Pierre Chareau](/favorites/maison-de-verre.webp)
+
+![Modernist house in a rocky landscape](/favorites/rocky-coast-house.webp)

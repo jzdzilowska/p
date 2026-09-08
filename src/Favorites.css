@@ -64,13 +64,13 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
 }
 .inspiration-board {
-  max-height: min(72vh, 680px);
+  display: flex;
+  height: clamp(220px, 40vw, 300px);
   margin-top: 56px;
-  padding-right: 6px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  column-gap: 12px;
-  scroll-behavior: smooth;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
 }
 
 .inspiration-board:focus-visible {
@@ -79,31 +79,25 @@
 }
 
 .inspiration-pin {
-  margin: 0 0 12px;
+  flex: 0 0 auto;
+  height: 100%;
+  margin: 0;
   overflow: hidden;
-  break-inside: avoid;
   background: var(--border);
 }
 
 .inspiration-pin img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 560px) {
   .inspiration-board {
     margin-top: 40px;
-    column-gap: 8px;
-  }
-
-  .inspiration-pin {
-    margin-bottom: 8px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .inspiration-board {
-    scroll-behavior: auto;
+    height: 210px;
+    gap: 8px;
   }
 }

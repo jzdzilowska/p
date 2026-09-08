@@ -14,7 +14,6 @@ export default function InspirationBoard({ images }: InspirationBoardProps) {
       className: 'inspiration-board',
       'aria-label': 'Inspiration board',
       tabIndex: 0,
-      style: { columnCount: Math.min(images.length, 3) },
     },
     images.map((image) =>
       createElement(

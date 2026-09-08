@@ -39,6 +39,7 @@ test('renders inspiration images as a lazy-loaded board', async () => {
     }),
   )
 
+  assert.match(html, /class="inspiration-board"/)
   assert.match(html, /aria-label="Inspiration board"/)
   assert.match(html, /class="inspiration-pin"/)
   assert.match(html, /loading="lazy"/)
