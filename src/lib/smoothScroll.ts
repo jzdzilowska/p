@@ -1,13 +1,10 @@
 import Lenis from 'lenis'
 
-// Whole-page smooth scroll with just a touch of ease — not a heavy lag.
-// Higher lerp = the page catches up to the wheel faster.
+// Respond quickly, then settle into a short, soft glide.
 export const lenis = new Lenis({
-  duration: 1.0,
-  easing: (t: number) => 1 - Math.pow(1 - t, 3),
   smoothWheel: true,
-  lerp: 0.15,
-  wheelMultiplier: 1,
+  duration: 0.55,
+  easing: (t: number) => 1 - Math.pow(1 - t, 5),
 })
 
 function raf(time: number) {

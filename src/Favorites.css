@@ -63,41 +63,73 @@
   color: #fff;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
 }
-.inspiration-board {
-  display: flex;
-  height: clamp(220px, 40vw, 300px);
-  margin-top: 56px;
-  gap: 12px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-inline: contain;
-}
 
-.inspiration-board:focus-visible {
-  outline: 1px solid var(--text);
-  outline-offset: 6px;
+.inspiration-board {
+  width: 100%;
+  margin-top: 34px;
+  margin-bottom: -20px;
 }
 
 .inspiration-pin {
-  flex: 0 0 auto;
-  height: 100%;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
   margin: 0;
   overflow: hidden;
   background: var(--border);
 }
 
+.inspiration-pin:focus-visible {
+  outline: 1px solid var(--text-h);
+  outline-offset: 4px;
+}
+
 .inspiration-pin img {
+  position: absolute;
+  inset: 0;
   display: block;
-  width: auto;
-  max-width: none;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+.inspiration-hover-zone {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+}
+
+.inspiration-hover-zone-left {
+  left: 0;
+}
+
+.inspiration-hover-zone-right {
+  right: 0;
+}
+
+.inspiration-image-left,
+.inspiration-image-right {
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.inspiration-hover-zone-left:hover ~ .inspiration-image-left,
+.inspiration-hover-zone-right:hover ~ .inspiration-image-right,
+.inspiration-pin:focus-visible .inspiration-image-left {
+  opacity: 1;
+}
+
 @media (max-width: 560px) {
   .inspiration-board {
-    margin-top: 40px;
-    height: 210px;
-    gap: 8px;
+    margin-top: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inspiration-image-left,
+  .inspiration-image-right {
+    transition-duration: 120ms;
   }
 }
