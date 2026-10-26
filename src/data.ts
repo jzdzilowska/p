@@ -9,10 +9,10 @@ export const profile = {
 
 export const about = [
   [
-    { text: 'I’m a software and product engineer based between WAW / NYC / SF, currently building @ ' },
+    { text: 'I’m a software and product engineer based between WAW / LDN / SF / NYC, currently building @ ' },
     {
-      text: 'Techtree',
-      href: 'https://www.linkedin.com/company/techtreehq/posts/?feedView=all',
+      text: 'Phia',
+      href: 'https://www.linkedin.com/company/phia-co/',
     },
     {
       text: '. I work E2E, from user research and interface prototyping to full-stack development. Im a firm believer in ',
@@ -58,7 +58,7 @@ export const about = [
       image: '/grad.PNG',
     },
     {
-      text: ' with a focus on data engineering and human-computer interaction, helping teach ',
+      text: ' with a focus on software systems, machine learning, and human-computer interaction, helping teach ',
     },
     {
       text: 'CSCI0300',
@@ -74,21 +74,31 @@ export const about = [
 ]
 
 export const now = {
+  company: 'Phia',
+  logo: '/logos/phia.jpeg',
+  location: 'New York City, USA',
+  role: 'Product Engineer',
+  dates: 'October 2026 - Now',
+  bullets: [
+  ],
+  stack: 'React, TypeScript, Python, FastAPI, PostgreSQL',
+}
+
+export const experience = [
+  {
   company: 'Techtree',
   logo: '/logos/techtree.svg',
-  location: 'Warsaw, Poland',
-  role: 'Full Stack Developer',
-  dates: 'May 2026 - Now',
+  location: 'Warsaw, Poland / London, UK',
+  role: 'Product Engineer',
+  dates: 'May 2026 - September 2026',
   bullets: [
     'Shipping product end-to-end in a high-velocity startup — user interviews, UI prototyping, architecture, database design, and prod deployment.',
     'Built a 6-signal hiring-intent scoring system over 100K+ companies, operationalized via MCP/Claude with automated Slack distribution.',
     'Designed a live job-to-candidate matching system converting unstructured job descriptions into ranked shortlists.',
     'Built a network-wide lead discovery and activation system across a 2M+ person talent graph.',
   ],
-  stack: 'React, TypeScript, Python, FastAPI, PostgreSQL',
-}
-
-export const experience = [
+  stack: 'React, TypeScript, Python, FastAPI, PostgreSQL',    
+  },
   {
     company: 'Amazon',
     logo: '/logos/amazon.svg',

@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import './WorldClock.css'
 
 const CITIES: { label: string; tz: string }[] = [
+  { label: 'WARSAW', tz: 'Europe/Warsaw' },
   { label: 'LONDON', tz: 'Europe/London' },
-  { label: 'ZURICH', tz: 'Europe/Zurich' },
-  { label: 'NEW YORK', tz: 'America/New_York' },
   { label: 'SAN FRANCISCO', tz: 'America/Los_Angeles' },
+  { label: 'NEW YORK', tz: 'America/New_York' },
 ]
 
 function timeIn(tz: string) {

@@ -179,11 +179,11 @@ function App() {
             <a href={profile.github} target="_blank" rel="noreferrer">
               GitHub
             </a>
-            <a href={profile.x} target="_blank" rel="noreferrer">
-              X
-            </a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer">
               LinkedIn
+            </a>
+            <a href={profile.x} target="_blank" rel="noreferrer">
+              X
             </a>
           </div>
           <div className="portrait-reveal" aria-hidden="true">
