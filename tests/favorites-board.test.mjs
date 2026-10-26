@@ -27,7 +27,7 @@ test('separates inspiration images from the favorites essay', async () => {
   })
 })
 
-test('embeds the inspiration image without interactive carousel controls', async () => {
+test('shows one inspiration image with labeled slideshow controls', async () => {
   const boardModule = await import('../src/InspirationBoard.ts').catch(() => null)
   assert.ok(boardModule, 'Inspiration board component is missing')
 
@@ -44,17 +44,13 @@ test('embeds the inspiration image without interactive carousel controls', async
   assert.match(html, /class="inspiration-board"/)
   assert.match(html, /aria-label="Inspiration board"/)
   assert.match(html, /class="inspiration-pin"/)
-  assert.doesNotMatch(html, /<button/)
+  assert.equal((html.match(/<button/g) ?? []).length, 2)
+  assert.match(html, /aria-label="Previous image"/)
+  assert.match(html, /aria-label="Next image"/)
+  assert.doesNotMatch(html, /inspiration-controls|inspiration-position/)
   assert.doesNotMatch(html, /role="dialog"/)
-  assert.equal((html.match(/<img/g) ?? []).length, 3)
-  assert.match(html, /class="inspiration-hover-zone inspiration-hover-zone-left"/)
-  assert.match(html, /class="inspiration-hover-zone inspiration-hover-zone-right"/)
-  assert.match(html, /class="inspiration-image inspiration-image-primary"/)
-  assert.match(html, /class="inspiration-image inspiration-image-left"/)
-  assert.match(html, /class="inspiration-image inspiration-image-right"/)
+  assert.equal((html.match(/<img/g) ?? []).length, 1)
   assert.match(html, /alt="Modernist house overlooking Los Angeles"/)
-  assert.match(html, /alt="Modernist house interior at night"/)
-  assert.match(html, /alt="Modernist house bedroom overlooking Los Angeles"/)
 })
 
 test('lays out the inspiration image responsively without horizontal scrolling', async () => {
@@ -69,9 +65,6 @@ test('lays out the inspiration image responsively without horizontal scrolling',
   assert.match(imageRule, /height\s*:\s*100%/)
   assert.match(imageRule, /object-fit\s*:\s*cover/)
   assert.match(css, /\.inspiration-pin\s*\{[^}]*aspect-ratio\s*:\s*3\s*\/\s*2/s)
-  assert.match(css, /\.inspiration-image-left,[\s\S]*\.inspiration-image-right\s*\{[^}]*opacity\s*:\s*0[^}]*transition\s*:\s*opacity\s+900ms/s)
-  assert.match(css, /\.inspiration-hover-zone-left:hover\s*~\s*\.inspiration-image-left[^}]*opacity\s*:\s*1/s)
-  assert.match(css, /\.inspiration-hover-zone-right:hover\s*~\s*\.inspiration-image-right[^}]*opacity\s*:\s*1/s)
 })
 
 test('favorites markdown declares the inspiration board section', async () => {
@@ -81,9 +74,9 @@ test('favorites markdown declares the inspiration board section', async () => {
   assert.match(source, /<!-- inspiration-board -->/)
   assert.equal(images.length, 3)
   assert.deepEqual(images.map(([image]) => image), [
-    '![Modernist house overlooking Los Angeles](/favorites/modernist-house-overlook.png)',
-    '![Modernist house interior at night](/favorites/modernist-house-interior.png)',
-    '![Modernist house bedroom overlooking Los Angeles](/favorites/modernist-house-bedroom.png)',
+    '![Modernist house overlooking Los Angeles](/favorites/21.jpg)',
+    '![Modernist house interior at night](/favorites/21_2.jpg)',
+    '![Modernist house bedroom overlooking Los Angeles](/favorites/21_3.jpg)',
   ])
   assert.doesNotMatch(source, /\/favorites\/modernist-house\.png/)
 })

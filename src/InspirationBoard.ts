@@ -1,4 +1,5 @@
-import { createElement } from 'react'
+import { createElement, Fragment, useState } from 'react'
+import type { KeyboardEvent } from 'react'
 import type { InspirationImage } from './favoritesContent'
 
 type InspirationBoardProps = {
@@ -6,54 +7,55 @@ type InspirationBoardProps = {
 }
 
 export default function InspirationBoard({ images }: InspirationBoardProps) {
+  const [activeIndex, setActiveIndex] = useState(0)
   if (images.length === 0) return null
-  const [primaryImage, leftImage, rightImage] = images
+  const currentIndex = activeIndex % images.length
+  const activeImage = images[currentIndex]
+  const move = (direction: number) => {
+    setActiveIndex(index => (index + direction + images.length) % images.length)
+  }
 
   return createElement(
     'section',
     {
       className: 'inspiration-board',
       'aria-label': 'Inspiration board',
+      'aria-roledescription': 'carousel',
+      onKeyDown: (event: KeyboardEvent<HTMLElement>) => {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault()
+          move(event.key === 'ArrowLeft' ? -1 : 1)
+        }
+      },
     },
     createElement(
       'figure',
-      { className: 'inspiration-pin', tabIndex: leftImage ? 0 : undefined },
-      leftImage
-        ? createElement('span', {
-            className: 'inspiration-hover-zone inspiration-hover-zone-left',
-            'aria-hidden': 'true',
-          })
-        : null,
-      rightImage
-        ? createElement('span', {
-            className: 'inspiration-hover-zone inspiration-hover-zone-right',
-            'aria-hidden': 'true',
-          })
-        : null,
+      { className: 'inspiration-pin' },
       createElement('img', {
-        className: 'inspiration-image inspiration-image-primary',
-        src: primaryImage.src,
-        alt: primaryImage.alt,
+        key: activeImage.src,
+        className: 'inspiration-image',
+        src: activeImage.src,
+        alt: activeImage.alt,
         loading: 'lazy',
         decoding: 'async',
       }),
-      leftImage
-        ? createElement('img', {
-            className: 'inspiration-image inspiration-image-left',
-            src: leftImage.src,
-            alt: leftImage.alt,
-            loading: 'lazy',
-            decoding: 'async',
-          })
-        : null,
-      rightImage
-        ? createElement('img', {
-            className: 'inspiration-image inspiration-image-right',
-            src: rightImage.src,
-            alt: rightImage.alt,
-            loading: 'lazy',
-            decoding: 'async',
-          })
+      images.length > 1
+        ? createElement(
+            Fragment,
+            null,
+            createElement('button', {
+              type: 'button',
+              className: 'inspiration-arrow inspiration-arrow-left',
+              'aria-label': 'Previous image',
+              onClick: () => move(-1),
+            }, createElement('span', { 'aria-hidden': true }, '<')),
+            createElement('button', {
+              type: 'button',
+              className: 'inspiration-arrow inspiration-arrow-right',
+              'aria-label': 'Next image',
+              onClick: () => move(1),
+            }, createElement('span', { 'aria-hidden': true }, '>')),
+          )
         : null,
     ),
   )

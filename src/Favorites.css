@@ -79,11 +79,6 @@
   background: var(--border);
 }
 
-.inspiration-pin:focus-visible {
-  outline: 1px solid var(--text-h);
-  outline-offset: 4px;
-}
-
 .inspiration-pin img {
   position: absolute;
   inset: 0;
@@ -93,43 +88,51 @@
   object-fit: cover;
 }
 
-.inspiration-hover-zone {
+.inspiration-arrow {
   position: absolute;
   z-index: 2;
-  top: 0;
-  bottom: 0;
-  width: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+  cursor: pointer;
 }
 
-.inspiration-hover-zone-left {
-  left: 0;
+.inspiration-arrow span {
+  display: block;
+  line-height: 1;
+  transform: scale(0.8, 1.4);
 }
 
-.inspiration-hover-zone-right {
-  right: 0;
+.inspiration-arrow-left {
+  left: 8px;
 }
 
-.inspiration-image-left,
-.inspiration-image-right {
-  opacity: 0;
-  transition: opacity 900ms ease;
+.inspiration-arrow-right {
+  right: 8px;
 }
 
-.inspiration-hover-zone-left:hover ~ .inspiration-image-left,
-.inspiration-hover-zone-right:hover ~ .inspiration-image-right,
-.inspiration-pin:focus-visible .inspiration-image-left {
-  opacity: 1;
+.inspiration-arrow:hover {
+  opacity: 0.75;
+}
+
+.inspiration-arrow:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
 }
 
 @media (max-width: 560px) {
   .inspiration-board {
     margin-top: 34px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .inspiration-image-left,
-  .inspiration-image-right {
-    transition-duration: 120ms;
   }
 }
