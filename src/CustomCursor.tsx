@@ -15,6 +15,7 @@ export default function CustomCursor() {
 
     const onMove = (e: MouseEvent) => {
       dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`
+      dot.classList.remove('is-hidden')
     }
     const onEnter = () => dot.classList.remove('is-hidden')
     const onLeave = () => dot.classList.add('is-hidden')
